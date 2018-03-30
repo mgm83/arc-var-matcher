@@ -43,12 +43,18 @@ exports.pathToSnapshots = path.join(
   'snapshots'
 )
 
-exports.saveToJSON = function (snapshot, filename) {
+exports.saveToJSON = function (filename, snapshot) {
   fs.writeFile(
-    `${exports.pathToSnapshots}/${exports.filenameFormat(filename)}`,
+    `${exports.pathToSnapshots}/${filename}`,
     JSON.stringify(snapshot, null, ' '),
     'utf8',
-    function () { console.log('file save complete') });
+    function (err) {
+      if (err) {
+        console.error(err)
+      } else {
+        console.log('file save complete') 
+      }
+    })
 }
 
 

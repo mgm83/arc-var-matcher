@@ -15,7 +15,7 @@ module.exports = function captureSnapshot (url, callback) {
     ) => {
       if (originalURL.startsWith(adobeUrl)) {
         const processedParams = processParams(expandQueryString(originalURL))
-        callback(processedParams, url)
+        callback(processedParams)
       }
     })
     .goto(url)
