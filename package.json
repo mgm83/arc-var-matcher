@@ -1,0 +1,24 @@
+{
+  "name": "arc-var-matcher",
+  "version": "1.0.0",
+  "description": "Used for comparing queries of analytics requests for project buildouts",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "snapshot-to-json": "node src/snapshotToJSON.js",
+    "compare-snapshot": "node src/compareSnapshot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wapopartners/arc-var-matcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wapopartners/arc-var-matcher/issues"
+  },
+  "homepage": "https://github.com/wapopartners/arc-var-matcher#readme",
+  "devDependencies": {
+    "nightmare": "^3.0.1"
+  }
+}
