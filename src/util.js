@@ -38,14 +38,14 @@ exports.filenameFormat = function (url) {
   return `${pathSegment}?${query}`
 }
 
-const pathToSnapshots = path.join(
+exports.pathToSnapshots = path.join(
   __dirname,
   'snapshots'
 )
 
 exports.saveToJSON = function (snapshot, filename) {
   fs.writeFile(
-    `${pathToSnapshots}/${exports.filenameFormat(filename)}`,
+    `${exports.pathToSnapshots}/${exports.filenameFormat(filename)}`,
     JSON.stringify(snapshot, null, ' '),
     'utf8',
     function () { console.log('file save complete') });

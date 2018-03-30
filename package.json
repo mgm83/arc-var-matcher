@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/wapopartners/arc-var-matcher#readme",
   "devDependencies": {
+    "chalk": "^2.3.2",
     "nightmare": "^3.0.1"
   }
 }
