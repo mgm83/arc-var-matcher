@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-
+const chalk = require('chalk')
 const varMap = require('./varMap')
 
 exports.expandQueryString = function (queryString, object) {
@@ -43,7 +43,7 @@ exports.pathToSnapshots = path.join(
   'snapshots'
 )
 
-exports.saveToJSON = function (filename, snapshot) {
+exports.saveToJSON = function (filename, callback, snapshot) {
   fs.writeFile(
     `${exports.pathToSnapshots}/${filename}`,
     JSON.stringify(snapshot, null, ' '),
@@ -52,9 +52,33 @@ exports.saveToJSON = function (filename, snapshot) {
       if (err) {
         console.error(err)
       } else {
-        console.log('file save complete') 
+        console.log('file save complete')
+        callback()
       }
     })
+}
+
+exports.logger = {
+  match: function(prevSnap, prop) {
+    console.log(
+      `${chalk.green('matched')}`,
+      `"${prevSnap[prop]}" for `,
+      `${chalk.green(`${prop}`)}`
+    )
+  },
+  mismatch: function(params, prevSnap, prop) {
+    console.log(
+      chalk.red(`mismatch `),
+      "for ",
+      `${chalk.red(`${prop}`)}`,
+      '\n',
+      chalk.green('EXPECTED: '),
+      `"${prevSnap[prop]}"`,
+      '\n',
+      chalk.red('RECIEVED: '),
+      `"${params[prop]}"`
+    )
+  }
 }
 
 
