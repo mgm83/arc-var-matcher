@@ -38,14 +38,19 @@ exports.filenameFormat = function (url) {
   return `${pathSegment}?${query}`
 }
 
-exports.pathToSnapshots = path.join(
-  __dirname,
-  'snapshots'
-)
+exports.pathToSnapshots = function () {
+  const configFile = path.join(process.cwd(), '.var_matcher_config.json')
+  if (fs.existsSync(configFile)) {
+    const { snapshotPath } = JSON.parse(fs.readFileSync(configFile, 'utf8'))
+    return snapshotPath
+  } else {
+    throw new Error('.var_matcher_config.json file not found')
+  }
+}
 
 exports.saveToJSON = function (filename, callback, snapshot) {
   fs.writeFile(
-    `${exports.pathToSnapshots}/${filename}`,
+    `${exports.pathToSnapshots()}/${filename}`,
     JSON.stringify(snapshot, null, ' '),
     'utf8',
     function (err) {

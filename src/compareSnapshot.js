@@ -17,7 +17,7 @@ const match = function (prevSnap, params) {
 
 module.exports = function (filename, callback) {
   const prevSnap = JSON.parse(
-    fs.readFileSync(`${pathToSnapshots}/${filename}`, 'utf8')
+    fs.readFileSync(`${pathToSnapshots()}/${filename}`, 'utf8')
   )
   const url = prevSnap['Current URL']
   captureSnapshot(url, function (newSnap) {
