@@ -38,11 +38,10 @@ exports.filenameFormat = function (url) {
   return `${pathSegment}?${query}`
 }
 
-exports.pathToSnapshots = function () {
+exports.getConfig = function () {
   const configFile = path.join(process.cwd(), '.var_matcher_config.json')
   if (fs.existsSync(configFile)) {
-    const { snapshotPath } = JSON.parse(fs.readFileSync(configFile, 'utf8'))
-    return snapshotPath
+    return JSON.parse(fs.readFileSync(configFile, 'utf8'))
   } else {
     throw new Error('.var_matcher_config.json file not found')
   }
@@ -50,7 +49,7 @@ exports.pathToSnapshots = function () {
 
 exports.saveToJSON = function (filename, callback, snapshot) {
   fs.writeFile(
-    `${exports.pathToSnapshots()}/${filename}`,
+    `${exports.getConfig().snapshotPath}/${filename}`,
     JSON.stringify(snapshot, null, ' '),
     'utf8',
     function (err) {
