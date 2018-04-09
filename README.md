@@ -11,10 +11,6 @@ Automated analytics "end-to-end" testing for Adobe variable matching.
 
 `arc-var-matcher` is looking for **.var_matcher_config.json** in the _root_ of your NPM project directory.
 
-"snapshotPath": "src/js/__tests__/analytics/snapshots",
-  "localDomain": "http://localhost/pb/",
-  "productionDomain": "http://www.latimes.com/",
-
 | property  | description |
 | ------------- | ------------- | 
 | snapshotPath  | path (relative to project root) to save your snapshot file  |
