@@ -91,34 +91,11 @@ yarn snapshot-to-json test http://www.latimes.com/entertainment/movies/la-ca-mn-
 Check to see new file:
 ```
 {
- "Name Space": "tribuneinteractive",
  "pageName": "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story.",
  "Current URL": "http://www.latimes.com/entertainment/movies/la-ca-mn-sneaks-strong-women-summer-films-20170421-story.html",
  "currencyCode": "USD",
  "server": "www.latimes.com",
- "prop1": "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story.",
- "hier1": "latimes:entertainment:movies",
- "prop2": "entertainment",
- "prop20": "D=g",
- "eVar20": "latimes",
- "prop21": "0 - 99",
- "eVar21": "story",
- "prop33": "Monday",
- "prop34": "1:30PM",
- "eVar35": "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story.",
- "prop36": "1",
- "eVar36": "la-ca-mn-sneaks-strong-women-summer-films-20170421",
- "prop37": "default",
- "eVar37": "768||1024",
- "prop38": "story",
- "eVar38": "Portrait",
- "eVar39": "800x578",
- "prop44": "la-ca-mn-sneaks-strong-women-summer-films-20170421",
- "prop57": "story",
- "prop59": "Michael Ordona",
- "prop62": "signed-out",
- "prop64": "04-21-2017 06:00",
- "prop74": "arc"
+  // ...
 }
 ```
 ### Compare snapshot to local version
@@ -127,41 +104,14 @@ yarn compare-snapshot test production
 ```
 Output:
 ```
-matched "tribuneinteractive" for  Name Space
 matched "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story." for  pageName
 mismatch  for  Current URL 
  EXPECTED:  "http://www.latimes.com/entertainment/movies/la-ca-mn-sneaks-strong-women-summer-films-20170421-story.html" 
  RECIEVED:  "http://localhost/pb/entertainment/movies/la-ca-mn-sneaks-strong-women-summer-films-20170421-story.html"
 matched "USD" for  currencyCode
-matched "www.latimes.com" for  server
-matched "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story." for  prop1
-matched "latimes:entertainment:movies" for  hier1
-matched "entertainment" for  prop2
-matched "D=g" for  prop20
-matched "latimes" for  eVar20
 mismatch  for  prop21 
  EXPECTED:  "0 - 99" 
  RECIEVED:  "100 - 199"
-matched "story" for  eVar21
-matched "Monday" for  prop33
-matched "1:30PM" for  prop34
-matched "lat:entertainment:movies:la-ca-mn-sneaks-strong-women-summer-films-20170421:story." for  eVar35
-matched "1" for  prop36
-matched "la-ca-mn-sneaks-strong-women-summer-films-20170421" for  eVar36
-matched "default" for  prop37
-matched "768||1024" for  eVar37
-matched "story" for  prop38
-matched "Portrait" for  eVar38
-matched "800x578" for  eVar39
-matched "la-ca-mn-sneaks-strong-women-summer-films-20170421" for  prop44
-matched "story" for  prop57
-matched "Michael Ordona" for  prop59
-matched "signed-out" for  prop62
-mismatch  for  prop64 
- EXPECTED:  "04-21-2017 06:00" 
- RECIEVED:  "04-21-2017 13:00"
-mismatch  for  prop74 
- EXPECTED:  "arc" 
- RECIEVED:  "arcdev"
+// ...
 ✨  Done in 7.73s.
 ```
