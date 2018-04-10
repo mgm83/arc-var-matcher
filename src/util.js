@@ -62,6 +62,66 @@ exports.saveToJSON = function (filename, callback, snapshot) {
     })
 }
 
+exports.getDomains = function (config) {
+    const domains =
+      Object.keys(config).reduce(function (accumulator, key) {
+        if (key.includes('Domain')) {
+          accumulator[key] = config[key]
+        }
+        return accumulator
+    }, {})
+    return domains
+}
+
+const isHomepage = (url, domain) => url === domain
+
+const matchDomain = function (env, url, domains) {
+  switch (env) {
+    case 'production':
+      return isHomepage(url, domains.productionDomain)
+        ? domains.localDomain
+        : url.split(domains.productionDomain)
+    case 'sandbox':
+      const sandboxDomain =
+        Object.values(domains.sandboxDomains)
+          .filter(value => url.includes(value))
+          .pop()
+      return isHomepage(url, sandboxDomain)
+        ? domain.localDomain
+        : url.split(sandboxDomain)
+    default:
+      return null
+  }
+} 
+
+exports.getLocalUrl = function ({
+  env,
+  snapshot,
+  domains,
+  query
+}) {
+  const currentUrl = snapshot['Current URL']
+  if (env !== 'local') {
+    const canonical = (function () {
+      if (env === 'sandbox' && domains.sandboxDomains) {
+        return matchDomain('sandbox', currentUrl, domains)
+      } else if (env === 'production' && domains.productionDomain) {
+        return matchDomain('production', currentUrl, domains)
+      } else {
+        throw new Error('Make sure config has local, sandbox and/or production domains')
+      }
+    })()
+
+    if (Array.isArray(canonical)) {
+      return `${domains.localDomain}${canonical[1]}${query}`
+    } else if (typeof canonical === 'string') {
+      return `${canonical}${query}`
+    } else {
+    }
+  }
+  return currentUrl
+}
+
 exports.logger = {
   match: function(prevSnap, prop) {
     console.log(
