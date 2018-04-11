@@ -1,6 +1,6 @@
 {
   "name": "arc-var-matcher",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Used for comparing queries of analytics requests for project buildouts",
   "main": "src/index.js",
   "scripts": {

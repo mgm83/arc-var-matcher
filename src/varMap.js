@@ -6,6 +6,7 @@ module.exports = {
   server: 'server',
   c1: 'prop1',
   h1: 'hier1',
+  h2: 'hier2',
   l1: 'list1',
   c2: 'prop2',
   c20: 'prop20',
