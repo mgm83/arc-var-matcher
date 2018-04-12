@@ -5,7 +5,8 @@ const {
   getConfig,
   logger,
   getDomains,
-  getLocalUrl
+  getLocalUrl,
+  filterVars
 } = require('./util')
 
 const match = function (prevSnap, params) {
@@ -39,7 +40,7 @@ module.exports = function (
   })
   
   captureSnapshot(url, function (newSnap) {
-    match(prevSnap, newSnap)
+    match(prevSnap, filterVars(config.ignore, newSnap))
       .then(function () {
         callback()
       })

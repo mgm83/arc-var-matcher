@@ -122,6 +122,21 @@ exports.getLocalUrl = function ({
   return currentUrl
 }
 
+exports.filterVars = function (ignoredVars, snapshot) { 
+  if (ignoredVars) {
+    const filtered =
+      Object.entries(snapshot).reduce(function (result, [key, value]) {
+        if (!ignoredVars.includes(key)) {
+          result[key] = value
+          return result
+        }
+        return result
+      }, {})
+    return filtered
+  }
+  return snapshot
+}
+
 exports.logger = {
   match: function(prevSnap, prop) {
     console.log(
